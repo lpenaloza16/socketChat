@@ -22,17 +22,18 @@ app.get("/", (req, res) => {
 //   });
 // });
 
-// // this will emit the event to all connected sockets
-// io.emit("hello", "world");
+// this will emit the event to all connected sockets
 
 // io.on("connection", (socket) => {
 //   socket.broadcast.emit("hi");
 // });
-//
+
 io.on("connection", (socket) => {
   socket.on("chat message", (msg) => {
     io.emit("chat message", msg);
   });
+
+  io.emit("hello", "world");
 });
 
 server.listen(3000, () => {
